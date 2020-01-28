@@ -1,0 +1,24 @@
+---
+releases:
+  - name: "kubernetes-dashboard"
+    namespace: "kubernetes-dashboard"
+    labels:
+      chart: "kubernetes-dashboard"
+      repo: "stable"
+      component: "monitoring"
+    chart: "stable/kubernetes-dashboard"
+    version: "v1.10.0"
+    values:
+      - image:
+          repository: "k8s.gcr.io/kubernetes-dashboard-amd64"
+        ingress:
+          enabled: true
+          hosts:
+            - 'dashboard.localhost'
+          paths:
+            - '/'
+        enableInsecureLogin: true
+        rbac:
+          clusterAdminRole: true
+        service:
+          externalPort: 80
