@@ -3,22 +3,20 @@ releases:
   - name: "kubernetes-dashboard"
     namespace: "kubernetes-dashboard"
     labels:
-      chart: "kubernetes-dashboard"
+      chart: "kubernetes-dashboard-beta"
       repo: "stable"
       component: "monitoring"
-    chart: "stable/kubernetes-dashboard"
-    version: "v1.10.0"
+    chart: "../charts/kubernetes-dashboard-beta"
+    version: "0.1.0"
     values:
-      - image:
-          repository: "k8s.gcr.io/kubernetes-dashboard-amd64"
-        ingress:
+      - ingress:
           enabled: true
           hosts:
-            - 'dashboard.localhost'
-          paths:
-            - '/'
+            - host: dashboard.{{ requiredEnv "DOMAIN_NAME" }}
+              paths:
+                - '/'
         enableInsecureLogin: true
         rbac:
           clusterAdminRole: true
         service:
-          externalPort: 80
+          port: 80
