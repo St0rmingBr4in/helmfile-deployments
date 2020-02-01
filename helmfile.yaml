@@ -1,3 +1,4 @@
 ---
 helmfiles:
   - "deploy/dashboard.yaml"
+  - "deploy/traefik-ingress.yaml"

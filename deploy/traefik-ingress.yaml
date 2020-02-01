@@ -1,0 +1,44 @@
+---
+releases:
+  - name: "traefik"
+    namespace: "kube-system"
+    labels:
+      chart: "traefik"
+      repo: "stable"
+      component: "ingress"
+    chart: "stable/traefik"
+    version: "1.86.1"
+    values:
+      - rbac:
+          enabled: true
+        dashboard:
+          enabled: true
+          domain: "traefik.{{ requiredEnv "DOMAIN_NAME" }}"
+        ssl:
+          enabled: true
+          enforced: true
+          permanentRedirect: true
+          defaultCN: "*.{{ requiredEnv "DOMAIN_NAME" }}"
+          defaultCert: {{ requiredEnv "CERT" }}
+          defaultKey: {{ requiredEnv "KEY" }}
+        acme:
+          logging: true
+          enabled: false
+          email: "julien.doche@gmail.com"
+          challengeType: dns-01
+          dnsProvider:
+            name: dyn
+            dyn:
+              DYN_CUSTOMER_NAME: {{ requiredEnv "DYN_CUSTOMER_NAME" }}
+              DYN_PASSWORD: {{ requiredEnv "DYN_PASSWORD" }}
+              DYN_USER_NAME: {{ requiredEnv "DYN_USER_NAME" }}
+          staging: true
+          domains:
+            enabled: true
+            domainsList:
+              - main: "*.{{ requiredEnv "DOMAIN_NAME" }}"
+              - sans:
+                  - ""
+          persistence:
+            enabled: false
+            storageClass: my-traefik-acme
