@@ -1,0 +1,23 @@
+---
+repositories:
+  - name: halkeye
+    url: https://halkeye.github.io/helm-charts/
+
+releases:
+  - name: "bazarr"
+    namespace: "media"
+    labels:
+      chart: "bazarr"
+      repo: "billimek"
+      component: "media"
+    chart: "halkeye/bazarr"
+    version: "0.1.3"
+    values:
+      - image:
+          tag: v0.8.4.1-ls66
+        ingress:
+          enabled: true
+          hosts:
+            - bazarr.{{ requiredEnv "DOMAIN_NAME" }}
+        persistence:
+          enabled: true

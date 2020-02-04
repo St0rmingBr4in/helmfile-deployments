@@ -1,0 +1,21 @@
+---
+repositories:
+  - name: billimek
+    url: https://billimek.com/billimek-charts/
+
+releases:
+  - name: "radarr"
+    namespace: "media"
+    labels:
+      chart: "radarr"
+      repo: "billimek"
+      component: "media"
+    chart: "billimek/radarr"
+    version: "3.0.0"
+    values:
+      - image:
+          tag: v0.2.0.1450-ls49
+        ingress:
+          enabled: true
+          hosts:
+            - radarr.{{ requiredEnv "DOMAIN_NAME" }}

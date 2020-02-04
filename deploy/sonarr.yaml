@@ -1,0 +1,21 @@
+---
+repositories:
+  - name: billimek
+    url: https://billimek.com/billimek-charts/
+
+releases:
+  - name: "sonarr"
+    namespace: "media"
+    labels:
+      chart: "sonarr"
+      repo: "billimek"
+      component: "media"
+    chart: "billimek/sonarr"
+    version: "3.0.0"
+    values:
+      - image:
+          tag: 3.0.3.690-ls170
+        ingress:
+          enabled: true
+          hosts:
+            - sonarr.{{ requiredEnv "DOMAIN_NAME" }}

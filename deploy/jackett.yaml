@@ -1,0 +1,21 @@
+---
+repositories:
+  - name: billimek
+    url: https://billimek.com/billimek-charts/
+
+releases:
+  - name: "jackett"
+    namespace: "media"
+    labels:
+      chart: "jackett"
+      repo: "billimek"
+      component: "media"
+    chart: "billimek/jackett"
+    version: "2.0.1"
+    values:
+      - image:
+          tag: v0.12.1669-ls52
+        ingress:
+          enabled: true
+          hosts:
+            - jackett.{{ requiredEnv "DOMAIN_NAME" }}

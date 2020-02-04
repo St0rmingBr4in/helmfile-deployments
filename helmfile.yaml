@@ -2,3 +2,7 @@
 helmfiles:
   - "deploy/dashboard.yaml"
   - "deploy/traefik-ingress.yaml"
+  - "deploy/radarr.yaml"
+  - "deploy/sonarr.yaml"
+  - "deploy/bazarr.yaml"
+  - "deploy/jackett.yaml"
