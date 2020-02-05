@@ -1,0 +1,23 @@
+---
+repositories:
+  - name: mojo2600
+    url: https://mojo2600.github.io/pihole-kubernetes/
+
+releases:
+  - name: "pihole"
+    namespace: "infra"
+    labels:
+      chart: "pihole"
+      repo: "billimek"
+      component: "infra"
+    chart: "mojo2600/pihole"
+    version: "1.3.1"
+    values:
+      - image:
+          tag: 4.3.2-1
+        ingress:
+          enabled: true
+          hosts:
+            - pihole.{{ requiredEnv "DOMAIN_NAME" }}
+        persistentVolumeClaim:
+          enabled: false

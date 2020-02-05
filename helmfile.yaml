@@ -6,3 +6,4 @@ helmfiles:
   - "deploy/sonarr.yaml"
   - "deploy/bazarr.yaml"
   - "deploy/jackett.yaml"
+  - "deploy/pihole.yaml"
