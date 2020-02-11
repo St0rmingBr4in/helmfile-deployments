@@ -8,15 +8,14 @@ releases:
     namespace: "kube-system"
     labels:
       chart: "traefik"
-      repo: "stable"
+      repo: "local"
       component: "ingress"
-    chart: "stable/traefik"
-    version: "1.86.1"
+    chart: "../charts/traefik-helm-chart/traefik"
+    version: "3.3.3"
     values:
-      - rbac:
-          enabled: true
-        dashboard:
-          enabled: true
+      - dashboard:
+          enable: true
+          ingressRoute: true
           domain: "traefik.{{ requiredEnv "DOMAIN_NAME" }}"
           auth:
             basic:

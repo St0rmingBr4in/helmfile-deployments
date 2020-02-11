@@ -4,7 +4,7 @@ releases:
     namespace: "kubernetes-dashboard"
     labels:
       chart: "kubernetes-dashboard-beta"
-      repo: "stable"
+      repo: "local"
       component: "monitoring"
     chart: "../charts/kubernetes-dashboard-beta"
     version: "0.1.0"

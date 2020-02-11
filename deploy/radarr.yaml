@@ -11,7 +11,7 @@ releases:
       repo: "billimek"
       component: "media"
     chart: "billimek/radarr"
-    version: "3.0.0"
+    version: "3.0.1"
     values:
       - image:
           tag: v0.2.0.1450-ls49

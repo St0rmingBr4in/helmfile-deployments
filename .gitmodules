@@ -1,3 +1,6 @@
 [submodule "charts/kubernetes-dashboard-beta"]
 	path = charts/kubernetes-dashboard-beta
 	url = https://github.com/St0rmingBr4in/kubernetes-dashboard-beta.git
+[submodule "charts/traefik-helm-chart"]
+	path = charts/traefik-helm-chart
+	url = https://github.com/containous/traefik-helm-chart
