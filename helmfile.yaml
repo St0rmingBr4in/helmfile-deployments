@@ -7,3 +7,4 @@ helmfiles:
   - "deploy/bazarr.yaml"
   - "deploy/jackett.yaml"
   - "deploy/pihole.yaml"
+  - "deploy/minecraft.yaml"

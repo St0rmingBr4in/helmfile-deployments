@@ -1,0 +1,38 @@
+---
+releases:
+  - name: "minecraft-latest"
+    namespace: "gaming"
+    labels:
+      chart: "minecraft"
+      repo: "stable"
+      component: "gaming"
+    chart: "stable/minecraft"
+    version: "1.1.6"
+    values:
+      - imageTag: "multiarch"
+        minecraftServer:
+          eula: true
+          version: "1.15.2"
+          motd: "licorne"
+          pvp: true
+          memory: 1G
+          ops: "juldoc,gwen_78"
+          whitelist: "juldoc,gwen_78"
+          rcon:
+            enabled: true
+            port: 25575
+            password: {{ requiredEnv "RCON_PASSWORD" | quote }}
+            serviceType: LoadBalancer
+        readinessProbe:
+          initialDelaySeconds: 120
+          failureThreshold: 10
+        livenessProbe:
+          initialDelaySeconds: 120
+          failureThreshold: 10
+        resources:
+          requests:
+            memory: 1Gi
+            cpu: 0
+        persistence:
+          dataDir:
+            enabled: true
