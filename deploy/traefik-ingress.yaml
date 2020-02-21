@@ -14,6 +14,9 @@ releases:
         dashboard:
           enabled: true
           domain: "traefik.{{ requiredEnv "DOMAIN_NAME" }}"
+          auth:
+            basic:
+              {{ requiredEnv "TRAEFIK_USER" }}: "{{ requiredEnv "TRAEFIK_PASS" }}"
         ssl:
           enabled: true
           enforced: true
