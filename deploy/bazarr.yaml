@@ -16,6 +16,9 @@ releases:
       - image:
           tag: v0.8.4.1-ls66
         ingress:
+          annotations:
+            traefik.ingress.kubernetes.io/auth-type: "basic"
+            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
             - bazarr.{{ requiredEnv "DOMAIN_NAME" }}

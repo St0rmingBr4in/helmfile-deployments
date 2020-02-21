@@ -16,6 +16,9 @@ releases:
       - image:
           tag: 3.0.3.690-ls170
         ingress:
+          annotations:
+            traefik.ingress.kubernetes.io/auth-type: "basic"
+            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
             - sonarr.{{ requiredEnv "DOMAIN_NAME" }}

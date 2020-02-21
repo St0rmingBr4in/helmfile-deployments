@@ -16,6 +16,9 @@ releases:
       - image:
           tag: v0.2.0.1450-ls49
         ingress:
+          annotations:
+            traefik.ingress.kubernetes.io/auth-type: "basic"
+            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
             - radarr.{{ requiredEnv "DOMAIN_NAME" }}
