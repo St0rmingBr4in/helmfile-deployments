@@ -18,27 +18,24 @@ releases:
           enabled: true
           enforced: true
           permanentRedirect: true
-          defaultCN: "*.{{ requiredEnv "DOMAIN_NAME" }}"
-          defaultCert: {{ requiredEnv "CERT" }}
-          defaultKey: {{ requiredEnv "KEY" }}
         acme:
           logging: true
-          enabled: false
+          enabled: true
+          staging: false
           email: "julien.doche@gmail.com"
           challengeType: dns-01
+          resolvers:
+            - ns1.digitalocean.com
+            - ns2.digitalocean.com
+            - ns3.digitalocean.com
           dnsProvider:
-            name: dyn
-            dyn:
-              DYN_CUSTOMER_NAME: {{ requiredEnv "DYN_CUSTOMER_NAME" }}
-              DYN_PASSWORD: {{ requiredEnv "DYN_PASSWORD" }}
-              DYN_USER_NAME: {{ requiredEnv "DYN_USER_NAME" }}
-          staging: true
+            name: digitalocean
+            digitalocean:
+              DO_AUTH_TOKEN: {{ requiredEnv "DO_AUTH_TOKEN" }}
           domains:
             enabled: true
             domainsList:
               - main: "*.{{ requiredEnv "DOMAIN_NAME" }}"
-              - sans:
-                  - ""
           persistence:
-            enabled: false
-            storageClass: my-traefik-acme
+            enabled: true
+            storageClass: local-path
