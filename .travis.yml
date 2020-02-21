@@ -1,0 +1,6 @@
+---
+dist: bionic
+
+script:
+  - . ./test/setup-cluster.sh
+  - ./test/test-cluster.sh
