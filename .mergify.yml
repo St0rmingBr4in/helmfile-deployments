@@ -1,0 +1,12 @@
+---
+pull_request_rules:
+  - name: Automatic merge on CI success and ready-to-merge label
+    conditions:
+      - status-success=Travis CI - Pull Request
+      - status-success=Travis CI - Branch
+      - label=ready-to-merge
+    actions:
+      merge:
+        method: rebase
+        rebase_fallback: null
+      delete_head_branch: {}
