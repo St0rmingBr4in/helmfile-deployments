@@ -8,3 +8,4 @@ helmfiles:
   - "deploy/jackett.yaml"
   - "deploy/pihole.yaml"
   - "deploy/minecraft.yaml"
+  - "deploy/nas-ui.yaml"

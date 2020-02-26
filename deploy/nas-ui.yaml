@@ -1,0 +1,23 @@
+---
+releases:
+  - name: "nas-ui"
+    namespace: "media"
+    labels:
+      chart: "external-service"
+      repo: "local"
+      component: "dashboard"
+    chart: "../charts/helm-charts/external-service"
+    version: "0.1.2"
+    values:
+      - ingress:
+          enabled: true
+        addresses:
+          - ip: 192.168.1.42
+        ports:
+          - port: 5000
+            name: http
+            ingress:
+              hosts:
+                - host: nas-ui.{{ requiredEnv "DOMAIN_NAME" }}
+                  paths:
+                    - '/'
