@@ -23,3 +23,11 @@ kubectl apply -R -f raw_k8s
 
 helmfile lint
 helmfile apply
+
+n=0
+until [ $n -ge 5 ]
+do
+   sleep 15
+   helmfile test --args '--logs' && break
+   n=$((n + 1))
+done
