@@ -7,7 +7,7 @@ releases:
       repo: "local"
       component: "dashboard"
     chart: "../charts/helm-charts/external-service"
-    version: "0.1.2"
+    version: "0.2.0"
     values:
       - ingress:
           enabled: true
