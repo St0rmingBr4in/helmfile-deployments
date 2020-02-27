@@ -1,13 +1,17 @@
 ---
+repositories:
+  - name: t3n
+    url: https://storage.googleapis.com/t3n-helm-charts
+
 releases:
   - name: "nas-ui"
     namespace: "media"
     labels:
       chart: "external-service"
-      repo: "local"
+      repo: "t3n"
       component: "dashboard"
-    chart: "../charts/helm-charts/external-service"
-    version: "0.1.2"
+    chart: "t3n/external-service"
+    version: "0.2.0"
     values:
       - ingress:
           enabled: true
