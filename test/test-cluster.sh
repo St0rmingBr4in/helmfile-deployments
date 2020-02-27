@@ -21,6 +21,5 @@ sudo snap install kubectl --classic
 
 kubectl apply -R -f raw_k8s
 
-set +e
-
+helmfile lint
 helmfile apply
