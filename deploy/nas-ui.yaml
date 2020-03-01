@@ -16,7 +16,7 @@ releases:
       - ingress:
           enabled: true
         addresses:
-          - ip: 192.168.1.42
+          - ip: {{ requiredEnv "NAS_IP" }}
         ports:
           - port: 5000
             name: http

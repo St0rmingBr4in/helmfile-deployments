@@ -1,5 +1,7 @@
+export ENV=testing
 export DOMAIN_NAME="localhost"
 export TRAEFIK_USER="user"
 export TRAEFIK_PASS="pass"
 export DO_AUTH_TOKEN="token"
 export RCON_PASSWORD="pass"
+export NAS_IP=10.42.42.42
