@@ -22,3 +22,7 @@ releases:
           enabled: true
           hosts:
             - jackett.{{ requiredEnv "DOMAIN_NAME" }}
+        timezone: Europe/Paris
+        persistence:
+          config:
+            enabled: true
