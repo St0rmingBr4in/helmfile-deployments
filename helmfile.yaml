@@ -9,3 +9,4 @@ helmfiles:
   - "deploy/pihole.yaml"
   - "deploy/minecraft.yaml"
   - "deploy/nas-ui.yaml"
+  - "deploy/nfs-client-provisioner.yaml"
