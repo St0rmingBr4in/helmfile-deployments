@@ -4,17 +4,17 @@ repositories:
     url: https://billimek.com/billimek-charts/
 
 releases:
-  - name: "sonarr"
+  - name: "qbittorrent"
     namespace: "media"
     labels:
-      chart: "sonarr"
+      chart: "qbittorrent"
       repo: "billimek"
       component: "media"
-    chart: "billimek/sonarr"
-    version: "3.0.0"
+    chart: "billimek/qbittorrent"
+    version: "3.0.1"
     values:
       - image:
-          tag: 3.0.3.690-ls170
+          tag: 14.2.0.99201912180418-6819-118af03ubuntu18.04.1-ls57
         puid: 1031
         pgid: 100
         ingress:
@@ -23,13 +23,9 @@ releases:
             traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
-            - sonarr.{{ requiredEnv "DOMAIN_NAME" }}
+            - qbittorrent.{{ requiredEnv "DOMAIN_NAME" }}
         timezone: Europe/Paris
         persistence:
           downloads:
             enabled: {{ not (eq (requiredEnv "ENV") "testing") }}
-            existingClaim: media-downloads
-          tv:
-            enabled: {{ not (eq (requiredEnv "ENV") "testing") }}
-            existingClaim: media-library
-            subPath: Series
+            existingClaim: "media-downloads"

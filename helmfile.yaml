@@ -10,3 +10,4 @@ helmfiles:
   - "deploy/minecraft.yaml"
   - "deploy/nas-ui.yaml"
   - "deploy/nfs-client-provisioner.yaml"
+  - "deploy/qbittorrent.yaml"

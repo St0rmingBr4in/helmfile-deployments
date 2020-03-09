@@ -16,6 +16,8 @@ releases:
       - image:
           tag: v0.8.4.1-ls66
         bazarr:
+          puid: 1031
+          pgid: 100
           tz: Europe/Paris
         ingress:
           annotations:
