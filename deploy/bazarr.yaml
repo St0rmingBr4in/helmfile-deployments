@@ -1,24 +1,24 @@
 ---
-repositories:
-  - name: halkeye
-    url: https://halkeye.github.io/helm-charts/
-
 releases:
   - name: "bazarr"
     namespace: "media"
     labels:
       chart: "bazarr"
-      repo: "billimek"
+      repo: "local"
       component: "media"
-    chart: "halkeye/bazarr"
-    version: "0.1.3"
+    chart: "../charts/bazarr"
+    version: "0.2.0"
     values:
       - image:
           tag: v0.8.4.1-ls66
         bazarr:
           puid: 1031
-          pgid: 100
+          guid: 100
           tz: Europe/Paris
+          persistence:
+            tv:
+              enabled: {{ not (eq (requiredEnv "ENV") "testing") }}
+              existingClaim: media-library
         ingress:
           annotations:
             traefik.ingress.kubernetes.io/auth-type: "basic"
