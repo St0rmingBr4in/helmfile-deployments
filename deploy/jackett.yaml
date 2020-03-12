@@ -27,6 +27,6 @@ releases:
         timezone: Europe/Paris
         persistence:
           torrentblackhole:
-            enabled: true
+            enabled: {{ not (eq (requiredEnv "ENV") "testing") }}
             existingClaim: media-downloads
             subPath: torrent-blackhole
