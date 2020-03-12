@@ -24,10 +24,17 @@ kubectl apply -R -f raw_k8s
 helmfile lint
 helmfile apply
 
+retry=5
+
 n=0
-until [ $n -ge 5 ]
+until [ $n -ge $retry ]
 do
-   sleep 15
-   helmfile test --args '--logs' && break
-   n=$((n + 1))
+ sleep 15
+ helmfile test --args '--logs' && break
+ n=$((n + 1))
 done
+if [ $n -eq $retry ]; then
+  echo "helmfile test failed $retry times"
+  set +x
+  exit 1
+fi
