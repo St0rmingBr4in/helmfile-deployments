@@ -15,3 +15,5 @@ while [ -z "$KUBECONFIG" ]; do
 done
 
 export KUBECONFIG
+
+set +x
