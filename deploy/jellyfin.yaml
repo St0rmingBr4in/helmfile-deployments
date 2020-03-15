@@ -1,0 +1,26 @@
+---
+releases:
+  - name: "jellyfin"
+    namespace: "media"
+    labels:
+      chart: "jellyfin"
+      repo: "local"
+      component: "media"
+    chart: "../charts/jellyfin-helm"
+    version: "0.1.0"
+    values:
+      - image:
+          tag: 10.5.0
+        ingress:
+          annotations:
+            traefik.ingress.kubernetes.io/auth-type: "basic"
+            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
+          enabled: true
+          hosts:
+            - sonarr.{{ requiredEnv "DOMAIN_NAME" }}
+        persistence:
+          config:
+            enabled: true
+          media:
+            enabled: true
+            existingClaim: media-library

@@ -4,3 +4,6 @@
 [submodule "charts/bazarr"]
 	path = charts/bazarr
 	url = https://github.com/St0rmingBr4in/bazarr.git
+[submodule "charts/jellyfin-helm"]
+	path = charts/jellyfin-helm
+	url = https://github.com/brianmcarey/jellyfin-helm.git

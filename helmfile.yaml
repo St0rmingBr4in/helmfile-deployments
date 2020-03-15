@@ -11,3 +11,4 @@ helmfiles:
   - "deploy/nas-ui.yaml"
   - "deploy/nfs-client-provisioner.yaml"
   - "deploy/qbittorrent.yaml"
+  - "deploy/jellyfin.yaml"
