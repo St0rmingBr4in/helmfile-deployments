@@ -12,9 +12,6 @@ releases:
       - image:
           tag: 10.5.0
         ingress:
-          annotations:
-            traefik.ingress.kubernetes.io/auth-type: "basic"
-            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
             - jellyfin.{{ requiredEnv "DOMAIN_NAME" }}
