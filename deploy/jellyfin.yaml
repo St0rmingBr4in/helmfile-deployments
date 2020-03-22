@@ -17,7 +17,7 @@ releases:
             traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
-            - sonarr.{{ requiredEnv "DOMAIN_NAME" }}
+            - jellyfin.{{ requiredEnv "DOMAIN_NAME" }}
         persistence:
           config:
             enabled: true
