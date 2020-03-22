@@ -1,4 +1,8 @@
 ---
+repositories:
+  - name: st0rmingbr4in
+    url: https://st0rmingbr4in.github.io/st0rmingbr4in-charts/
+
 releases:
   - name: "kubernetes-dashboard"
     namespace: "kubernetes-dashboard"
@@ -6,7 +10,7 @@ releases:
       chart: "kubernetes-dashboard-beta"
       repo: "stable"
       component: "monitoring"
-    chart: "../charts/kubernetes-dashboard-beta"
+    chart: "st0rmingbr4in/kubernetes-dashboard"
     version: "0.1.0"
     values:
       - ingress:
