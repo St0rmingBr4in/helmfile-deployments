@@ -13,3 +13,4 @@ helmfiles:
   - "deploy/qbittorrent.yaml"
   - "deploy/jellyfin.yaml"
   - "deploy/vault.yaml"
+  - "deploy/longhorn.yaml"
