@@ -4,3 +4,6 @@
 [submodule "charts/jellyfin-helm"]
 	path = charts/jellyfin-helm
 	url = https://github.com/brianmcarey/jellyfin-helm.git
+[submodule "charts/longhorn"]
+	path = charts/longhorn
+	url = https://github.com/longhorn/longhorn.git
