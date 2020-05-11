@@ -1,0 +1,29 @@
+---
+repositories:
+  - name: hashicorp
+    url: https://helm.releases.hashicorp.com
+
+releases:
+  - name: "vault"
+    namespace: "infra"
+    labels:
+      chart: "vault"
+      repo: "hashicorp"
+      component: "infra"
+    chart: "hashicorp/vault"
+    version: "0.5.0"
+    values:
+      - server:
+          dataStorage:
+            storageClass: nfs-client
+          ingress:
+            enabled: true
+            hosts:
+              - host: vault.{{ requiredEnv "DOMAIN_NAME" }}
+                paths: ["/"]
+        ui:
+          enabled: true
+        injector:
+          image:
+            repository: moikot/vault-k8s
+            tag: "0.2.0"
