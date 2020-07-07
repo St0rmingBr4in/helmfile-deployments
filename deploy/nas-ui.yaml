@@ -18,6 +18,13 @@ releases:
         addresses:
           - ip: {{ requiredEnv "NAS_IP" }}
         ports:
+          - port: 80
+            name: http-services
+            ingress:
+              hosts:
+                - host: nas-ui.{{ requiredEnv "DOMAIN_NAME" }}
+                  paths:
+                    - '/photo'
           - port: 5000
             name: http
             ingress:
