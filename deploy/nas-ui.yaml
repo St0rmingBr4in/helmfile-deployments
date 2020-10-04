@@ -25,6 +25,13 @@ releases:
                 - host: nas-ui.{{ requiredEnv "DOMAIN_NAME" }}
                   paths:
                     - '/photo'
+          - port: 9000
+            name: http-minio
+            ingress:
+              hosts:
+                - host: minio.{{ requiredEnv "DOMAIN_NAME" }}
+                  paths:
+                    - '/'
           - port: 5000
             name: http
             ingress:
