@@ -1,0 +1,26 @@
+---
+
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+releases:
+  - name: "metallb"
+    namespace: "metallb-system"
+    labels:
+      chart: "metallb"
+      repo: "bitnami"
+      component: "system"
+    chart: "bitnami/metallb"
+    version: "0.1.24"
+    values:
+      configInline:
+        address-pools:
+          - name: prod
+            protocol: layer2
+            addresses:
+              - {{ requiredEnv "METALLB_PROD_IP" }}
+          - name: preprod
+            protocol: layer2
+            addresses:
+              - {{ requiredEnv "METALLB_PREPROD_IP" }}
