@@ -1,0 +1,21 @@
+---
+repositories:
+  - name: k8s-at-home
+    url: https://k8s-at-home.com/charts/
+
+releases:
+  - name: "home-assistant"
+    namespace: "iot"
+    labels:
+      chart: "home-assistant"
+      repo: "k8s-at-home"
+      component: "iot"
+    chart: "k8s-at-home/home-assistant"
+    version: "2.5.2"
+    values:
+      - ingress:
+          enabled: true
+          hosts:
+            - home-assistant.{{ requiredEnv "DOMAIN_NAME" }}
+        persistence:
+          storageClass: nfs-client
