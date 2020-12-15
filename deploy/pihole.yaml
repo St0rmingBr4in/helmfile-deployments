@@ -5,7 +5,7 @@ repositories:
 
 releases:
   - name: "pihole"
-    namespace: "infra"
+    namespace: "prod-infra"
     labels:
       chart: "pihole"
       repo: "billimek"

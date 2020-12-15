@@ -5,7 +5,7 @@ repositories:
 
 releases:
   - name: "octoprint"
-    namespace: "iot"
+    namespace: "prod-iot"
     labels:
       chart: "external-service"
       repo: "t3n"

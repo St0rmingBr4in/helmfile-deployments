@@ -1,7 +1,7 @@
 ---
 releases:
   - name: "bazarr"
-    namespace: "media"
+    namespace: "prod-media"
     labels:
       chart: "bazarr"
       repo: "local"

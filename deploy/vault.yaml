@@ -5,7 +5,7 @@ repositories:
 
 releases:
   - name: "vault"
-    namespace: "infra"
+    namespace: "prod-infra"
     labels:
       chart: "vault"
       repo: "hashicorp"

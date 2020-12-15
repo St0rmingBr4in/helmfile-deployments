@@ -1,7 +1,7 @@
 ---
 releases:
   - name: "jellyfin"
-    namespace: "media"
+    namespace: "prod-media"
     labels:
       chart: "jellyfin"
       repo: "local"
