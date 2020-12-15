@@ -1,5 +1,4 @@
 ---
-
 repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
@@ -10,17 +9,17 @@ releases:
     labels:
       chart: "metallb"
       repo: "bitnami"
-      component: "system"
+      component: "loadbalancer"
     chart: "bitnami/metallb"
     version: "0.1.24"
     values:
-      configInline:
-        address-pools:
-          - name: prod
-            protocol: layer2
-            addresses:
-              - {{ requiredEnv "METALLB_PROD_IP" }}
-          - name: preprod
-            protocol: layer2
-            addresses:
-              - {{ requiredEnv "METALLB_PREPROD_IP" }}
+      - configInline:
+          address-pools:
+            - name: prod
+              protocol: layer2
+              addresses:
+                - {{ requiredEnv "METALLB_PROD_CIDR" }}
+            - name: preprod
+              protocol: layer2
+              addresses:
+                - {{ requiredEnv "METALLB_PREPROD_CIDR" }}

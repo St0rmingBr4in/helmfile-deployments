@@ -1,0 +1,40 @@
+---
+
+repositories:
+  - name: vmware-tanzu
+    url: https://vmware-tanzu.github.io/helm-charts
+
+releases:
+  - name: "velero"
+    namespace: "velero"
+    labels:
+      chart: "velero"
+      repo: "vmware-tanzu"
+      component: "backup"
+    chart: "vmware-tanzu/velero"
+    version: "2.13.6"
+    values:
+      - configuration:
+          provider: aws
+          backupStorageLocation:
+            bucket: kube-backup
+            config:
+              s3Url: {{ requiredEnv "VELERO_S3_URL" }}
+              region: minio
+              s3ForcePathStyle: true
+      - credentials:
+          secretContents:
+            cloud: |
+              [default]
+              aws_access_key_id={{ requiredEnv "VELERO_S3_ACCESS_KEY_ID" }}
+              aws_secret_access_key={{ requiredEnv "VELERO_S3_ACCESS_KEY" }}
+      - initContainers:
+          - name: velero-plugin-for-aws
+            image: velero/velero-plugin-for-aws:v1.1.0
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: /target
+                name: plugins
+      - defaultVolumesToRestic: true
+      - deployRestic: true
+      - schedules: {}

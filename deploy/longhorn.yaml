@@ -1,4 +1,9 @@
 ---
+
+repositories:
+  - name: longhorn
+    url: https://charts.longhorn.io
+
 releases:
   - name: "longhorn"
     namespace: "longhorn-system"
@@ -6,33 +11,19 @@ releases:
       chart: "longhorn"
       repo: "local"
       component: "storage"
-    chart: "../charts/longhorn/chart"
-    version: "0.8.0"
+    chart: "longhorn/longhorn"
+    version: "1.0.2"
     values:
-      - image:
-          longhorn:
-            engineTag: v0.8.0
-            managerTag: v0.8.0
-            uiTag: v0.8.0
-            instanceManagerTag: v1_20200301
-        ingress:
+      - ingress:
           annotations:
             traefik.ingress.kubernetes.io/auth-type: "basic"
             traefik.ingress.kubernetes.io/auth-secret: "basicauth"
           enabled: true
           hosts:
             - longhorn.{{ requiredEnv "DOMAIN_NAME" }}
+        csi:
+          kubeletRootDir: /var/lib/kubelet
         defaultSettings:
-          backupTarget: nfs://123.123.123.123:/volume1/kubernetes_storage
-          backupTargetCredentialSecret:
-          createDefaultDiskLabeledNodes:
-          defaultDataPath:
-          replicaSoftAntiAffinity:
-          storageOverProvisioningPercentage:
-          storageMinimalAvailablePercentage:
-          upgradeChecker:
-          defaultReplicaCount:
-          guaranteedEngineCPU:
-          defaultLonghornStaticStorageClass:
-          backupstorePollInterval:
-          taintToleration:
+          defaultReplicaCount: 2
+        persistence:
+          defaultClassReplicaCount: 2

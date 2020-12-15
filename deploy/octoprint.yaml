@@ -1,0 +1,30 @@
+---
+repositories:
+  - name: t3n
+    url: https://storage.googleapis.com/t3n-helm-charts
+
+releases:
+  - name: "octoprint"
+    namespace: "iot"
+    labels:
+      chart: "external-service"
+      repo: "t3n"
+      component: octoprint
+    chart: "t3n/external-service"
+    version: "1.1.0"
+    values:
+      - ingress:
+          annotations:
+            traefik.ingress.kubernetes.io/auth-type: "basic"
+            traefik.ingress.kubernetes.io/auth-secret: "basicauth"
+          enabled: true
+        addresses:
+          - ip: {{ requiredEnv "OCTOPRINT_IP" }}
+        ports:
+          - port: 80
+            name: http
+            ingress:
+              hosts:
+                - host: octoprint.{{ requiredEnv "DOMAIN_NAME" }}
+                  paths:
+                    - '/'
