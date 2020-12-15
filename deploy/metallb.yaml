@@ -18,8 +18,8 @@ releases:
             - name: prod
               protocol: layer2
               addresses:
-                - {{ requiredEnv "METALLB_PROD_CIDR" }}
+                - {{ requiredEnv "METALLB_PROD_IP" }}/32
             - name: preprod
               protocol: layer2
               addresses:
-                - {{ requiredEnv "METALLB_PREPROD_CIDR" }}
+                - {{ requiredEnv "METALLB_PREPROD_IP" }}/32
