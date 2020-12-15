@@ -21,6 +21,11 @@ releases:
           auth:
             basic:
               {{ requiredEnv "TRAEFIK_USER" }}: "{{ requiredEnv "TRAEFIK_PASS" }}"
+        loadBalancerIP: {{ requiredEnv "METALLB_PROD_IP" }}
+        externalTrafficPolicy: Cluster
+        service:
+          annotations:
+            metallb.universe.tf/allow-shared-ip: prod
         ssl:
           enabled: true
           enforced: true
@@ -45,4 +50,4 @@ releases:
               - main: "*.{{ requiredEnv "DOMAIN_NAME" }}"
           persistence:
             enabled: true
-            storageClass: local-path
+            storageClass: longhorn
