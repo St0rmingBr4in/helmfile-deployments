@@ -1,17 +1,17 @@
 ---
 repositories:
-  - name: stable
-    url: https://charts.helm.sh/stable
+  - name: itzg
+    url: https://itzg.github.io/minecraft-server-charts/
 
 releases:
   - name: "minecraft-latest"
-    namespace: "gaming"
+    namespace: "prod-gaming"
     labels:
       chart: "minecraft"
       repo: "stable"
       component: "gaming"
-    chart: "stable/minecraft"
-    version: "1.1.7"
+    chart: "itzg/minecraft"
+    version: "2.0.2"
     values:
       - imageTag: "multiarch"
         minecraftServer:
@@ -27,12 +27,19 @@ releases:
             port: 25575
             password: {{ requiredEnv "RCON_PASSWORD" | quote }}
             serviceType: LoadBalancer
+            loadBalancerIP: {{ requiredEnv "METALLB_PROD_IP" }}
+            externalTrafficPolicy: Cluster
+          serviceType: LoadBalancer
+          serviceAnnotations:
+            metallb.universe.tf/allow-shared-ip: prod
+          loadBalancerIP: {{ requiredEnv "METALLB_PROD_IP" }}
+          externalTrafficPolicy: Cluster
         readinessProbe:
           initialDelaySeconds: 120
-          failureThreshold: 10
+          failureThreshold: 100
         livenessProbe:
           initialDelaySeconds: 120
-          failureThreshold: 10
+          failureThreshold: 100
         resources:
           requests:
             memory: 1Gi
