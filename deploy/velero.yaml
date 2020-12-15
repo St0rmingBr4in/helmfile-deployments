@@ -12,9 +12,10 @@ releases:
       repo: "vmware-tanzu"
       component: "backup"
     chart: "vmware-tanzu/velero"
-    version: "2.13.6"
+    version: "2.13.7"
     values:
       - configuration:
+          defaultVolumesToRestic: true
           provider: aws
           backupStorageLocation:
             bucket: kube-backup
@@ -22,6 +23,10 @@ releases:
               s3Url: {{ requiredEnv "VELERO_S3_URL" }}
               region: minio
               s3ForcePathStyle: true
+          volumeSnapshotLocation:
+            name: default
+            config:
+              region: minio
       - credentials:
           secretContents:
             cloud: |
@@ -35,6 +40,6 @@ releases:
             volumeMounts:
               - mountPath: /target
                 name: plugins
-      - defaultVolumesToRestic: true
       - deployRestic: true
+      - snapshotsEnabled: true
       - schedules: {}
